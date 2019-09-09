@@ -8,19 +8,28 @@
     <title>sell</title>
   </head>
   <body>
-    <div id="app1">
+    <!-- <div id="app1">
       {{ a }}
+    </div> -->
+
+    <div id="app-5">
+      <p>{{ message }}</p>
+      <button v-on:click="reverseMessage">反转消息</button>
     </div>
     <!-- built files will be auto injected -->
 
     <script type="text/javascript">
-      var data = { a : 1 };
-      var vm = new Vue({
-          el : '#app1',
-          data : data
+      var app5 = new Vue({
+        el: '#app-5',
+        data: {
+          message: 'Hello Vue.js!'
+        },
+        methods: {
+          reverseMessage: function () {
+            this.message = this.message.split('').reverse().join('--')
+          }
+        }
       });
-
-      data.a = 'hi. . .. new value. ...';
     </script>
   </body>
 </html>
