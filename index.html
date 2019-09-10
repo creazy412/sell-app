@@ -12,38 +12,40 @@
       {{ a }}
     </div> -->
 
-    <div id="app-7">
-      <ol>
-        <!-- 
-          现在我们为每个 todo-item 提供 todo 对象
-          todo 对象是变量，即其内容可以是动态的。
-          我们也需要为每个组件提供一个“key”，稍后再
-          作详细解释。
-         -->
-        <todo-item 
-          v-for="item in groceryList"
-          v-bind:todo="item"
-          v-bind:key="item.id"
-        ></todo-item>
-      </ol>
+    <div id="app-7-2">
+      <button-counter title="title1 : " @clicknow="clicknow">
+        <h2>hi....h2</h2>
+      </button-counter>
+      <button-counter></button-counter>
     </div>
     <!-- built files will be auto injected -->
 
     <script type="text/javascript">
       // todo-item 组件现在接受一个 ‘prop’ 类似于一个自定义特性
-      Vue.component('todo-item', {
-        props: ['todo'],
-        template: '<li>{{ todo.text }}</li>'
+      Vue.component('button-counter', {
+        props: ['title'],
+        data: function () {
+          return {
+            count: 0
+          }
+        },
+        template: '<div><h1>hi...</h1><button v-on:click="clickfun">{{ title }}You clicked me {{ count }} times.</button><slot></slot></div>',
+        methods: {
+          clickfun: function () {
+            this.count ++;
+            this.$emit('clicknow', this.count);
+          }
+        }
       });
 
-      var app7 = new Vue({
-        el: '#app-7',
+      var app72 = new Vue({
+        el: '#app-7-2',
         data: {
-          groceryList: [
-            {id: 0, text: '蔬菜'},
-            {id: 1, text: '奶酪'},
-            {id: 2, text: '随便其它人吃的东西'}
-          ]
+        },
+        methods: {
+          clicknow: function (e) {
+            console.log(e);
+          }
         }
       });
     </script>
