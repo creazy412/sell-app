@@ -12,39 +12,25 @@
       {{ a }}
     </div> -->
 
-    <div id="app8">
-      {{ a }}
+    <div id="example">
+      <p>Original message: "{{ message }}"</p>
+      <p>Computed reversed message: "{{ reversedMessage }}"</p>
     </div>
 
     <p v-if="0">现在你看到我了</p>
     <!-- built files will be auto injected -->
 
     <script type="text/javascript">
-      // todo-item 组件现在接受一个 ‘prop’ 类似于一个自定义特性
-      Vue.component('button-counter', {
-        props: ['title'],
-        data: function () {
-          return {
-            count: 0
-          }
-        },
-        template: '<div><h1>hi...</h1><button v-on:click="clickfun">{{ title }}You clicked me {{ count }} times.</button><slot></slot></div>',
-        methods: {
-          clickfun: function () {
-            this.count ++;
-            this.$emit('clicknow', this.count);
-          }
-        }
-      });
-
-      var app8 = new Vue({
-        el: '#app8',
+      var vm = new Vue({
+        el: '#example',
         data: {
-          a: 1
+          message: 'Hello'
         },
-        created: function () {
-          // 'this' 指向 vm 示例
-          console.log('a is ' + this.a);
+        computed: {
+          // 计算属性得 getter
+          reversedMessage: function () {
+            return this.message.split('').reverse().join('')
+          }
         }
       });
     </script>
