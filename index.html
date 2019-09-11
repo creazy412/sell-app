@@ -12,24 +12,31 @@
       {{ a }}
     </div> -->
 
-    <div id="example">
-      <p>Original message: "{{ message }}"</p>
-      <p>Computed reversed message: "{{ reversedMessage }}"</p>
+    <div id="demo">
+      {{ fullName }}
     </div>
-
-    <p v-if="0">现在你看到我了</p>
     <!-- built files will be auto injected -->
 
     <script type="text/javascript">
       var vm = new Vue({
-        el: '#example',
+        el: '#demo',
         data: {
-          message: 'Hello'
+          firstName: 'Foo',
+          lastName: 'Bar',
         },
+        // 一，命令式
+        // watch: {
+        //   firstName: function (val) {
+        //     this.fullName = val + ' ' + this.lastName
+        //   },
+        //   lastName: function (val) {
+        //     this.fullName = this.firstName + ' ' + val
+        //   }
+        // },
+        // 计算属性方式
         computed: {
-          // 计算属性得 getter
-          reversedMessage: function () {
-            return this.message.split('').reverse().join('')
+          fullName: function () {
+            return this.firstName + ' ' + this.lastName
           }
         }
       });
