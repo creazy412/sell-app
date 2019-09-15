@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>calc</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        
+        <!-- 1. 导入vue 开发环境版本，包含了有帮助的命令行警告 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="app">
+            <input type="text" v-model="n1">
+
+            <select v-model="option">
+                <option>+</option>
+                <option>-</option>
+                <option>*</option>
+                <option>/</option>
+            </select>
+
+            <input type="text" v-model="n2">
+
+            <input type="button" @click="calc" value="=">
+
+            <input type="text" v-model="result">
+        </div>
+        
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    'n1': 0,
+                    'n2': 0,
+                    'option': '+',
+                    'result': 0
+                },
+                methods: {
+                    calc () {
+                        switch (this.option) {
+                            case '+': 
+                            this.result = parseInt(this.n1) + parseInt(this.n2);
+                            break;
+                            case '-': 
+                            this.result = parseInt(this.n1) - parseInt(this.n2);
+                            break;
+                            case '*': 
+                            this.result = parseInt(this.n1) * parseInt(this.n2);
+                            break;
+                            case '/': 
+                            this.result = parseInt(this.n1) / parseInt(this.n2);
+                            break;
+                        }
+
+                        // 第二种，投机取巧方式，不建议项目中使用
+                        // var codeStr = 'parseInt(this.n1) ' + this.option + ' parseInt(this.n2)';
+                        // this.result = eval(codeStr);
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
