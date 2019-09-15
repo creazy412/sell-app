@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+
+        <div id="app">
+
+            <!-- 值插入的方式不会被覆写掉，v-text、v-html则会被覆写 -->
+
+            <p v-cloak>++++++{{ msg }}-------</p>
+            <p v-text='msg2'></p>
+            <p v-html='msg2'></p>
+
+            <!-- v-bind: 是 Vue 中,提供的用户绑定属性的指令 -->
+            <!-- <input type="button" value="按钮" v-bind:title="mytitle + '123'"> -->
+            <!-- 注意: v-bind: 指令可以被简写为 :要绑定的属性 -->
+
+
+            <!-- Vue 中提供了 v-on: 事件绑定机制 -->
+            <input type="button" value="按钮" @click="show" :title="mytitle + '123'">
+        </div>
+        
+        <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg: 123,
+                    msg2: '<h1>哈哈哈，我是一个大大的H1，我大，我骄傲</h1>',
+                    mytitle: '这是自定义title'
+                },
+                methods: {
+                    show: function () {
+                        alert('hello');
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
+
+<!-- 1. 如何定义一个基本的vue代码结构 -->
+<!-- 2.插值表达式 和 v-text -->
+<!-- 3. v-cloak -->
+<!-- 4. v-html -->
+<!-- 5. v-bind    Vue提供的事件绑定机制  缩写是 : -->
+<!-- 6. v-on    Vue提供的事件绑定机制  缩写是 @ -->
