@@ -35,16 +35,16 @@
     
                     <label>
                         Name:
-                        <input type="text" class="form-control" v-model="name">
+                        <input type="text" class="form-control" v-model="name" :keyup.f2="add">
                     </label>
     
                     <!-- 在 Vue 钟，使用事件绑定机制，为元素加了括号之后，就可以传参了 -->
                     <input type="button" value="添加" class="btn btn-primary" @click="add">
 
                     <label>
-                            搜索筛选:
-                            <input type="text" class="form-control" v-model="keywords">
-                        </label>
+                        搜索筛选:
+                        <input type="text" class="form-control" v-model="keywords" v-focus>
+                    </label>
                 </div>
             </div>
 
@@ -161,7 +161,6 @@
                 }
             });
 
-
             // 如果定义一个私有的过滤器
             var vm2 = new Vue({
                 el: '#app2',
@@ -194,6 +193,27 @@
             // 过滤器定义语法
             // Vue.filter('过滤器的名称', function() {
             // return data + '123'; })
+
+            // 自定义全局按键修饰符
+            Vue.config.keyCodes.f2 = 113;
+
+            // 使用 Vue.directive() 定义全局的指令 v-focus
+            // 其中： 参数1 指令名称，注意，在定义的时候，指令的名称前面，不需要加 v- 前缀.
+            // 调用的时候，必须加v-
+            Vue.directive('focus', {
+                bind: function (el) { // 每当指令绑定到元素上的时候，会立即执行这个 bind 函数，只执行一次
+                    // 注意： 在每个 函数中，第一个参数永远是 el，表示 被绑定了指令的那个元素，是一个原生的JS对象
+                    // 在元素刚绑定指令的时候，还没有 插入到 DOM 中去，这时候，调用 focus 方法没有作用
+                    // 因为，一个元素 只有插入 DOM 之后，才能获取焦点
+                    // el.focus()
+                },
+                inserted: function (el) { // inserted 表示元素 插入到 DOM 中的时候，会执行 inserted 函数 【出发一次】
+                    el.focus()
+                },
+                updated: function () { // 当 VNode 更新的时候，会执行 updated，可能会触发多次
+
+                },
+            });
         </script>
     </body>
 </html>
