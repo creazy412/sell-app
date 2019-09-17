@@ -69,13 +69,13 @@
         </div>
 
         <div id="app2">
-            {{ dt | dateFormat }}
+            {{ dt | dateFormat('pattern') }}
         </div>
         
         <script>
             // 全局的过滤器，进行时间的格式化
-            Vue.filter('dateFormat', function (dataStr, pattern="") {
-                var dt = new Date(dataStr);
+            Vue.filter('dateFormat', function (dateStr, pattern="") {
+                var dt = new Date(dateStr);
 
                 // yyyy-mm-dd
                 var y = dt.getFullYear();
@@ -171,8 +171,8 @@
                 methods: {},
                 filters: {// 定义私有过滤器     两个条件 【过滤器名称 和 处理函数】
                     // 过滤器调用的时候，采用的是就近原则，如果私有过滤器和全局过滤器名称一致了，这时候，优先调用私有过滤器.
-                    dateFormat: function (dateStr, pattern) {
-                        var dt = new Date(dataStr);
+                    dateFormat: function (dateStr, pattern="") {
+                        var dt = new Date(dateStr);
 
                         // yyyy-mm-dd
                         var y = dt.getFullYear();
