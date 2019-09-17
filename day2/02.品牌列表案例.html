@@ -61,14 +61,37 @@
                     <tr v-for="item in search(keywords)" :key="item.id">
                         <td>{{ item.id }}</td>
                         <td v-text="item.name"></td>
-                        <td>{{ item.ctime }}</td>
+                        <td>{{ item.ctime | dateFormat('pattern') }}</td>
                         <td><a href="#" @click="del(item.id)">删除</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <div id="app2">
+            {{ dt | dateFormat }}
+        </div>
         
         <script>
+            // 全局的过滤器，进行时间的格式化
+            Vue.filter('dateFormat', function (dataStr, pattern="") {
+                var dt = new Date(dataStr);
+
+                // yyyy-mm-dd
+                var y = dt.getFullYear();
+                var m = dt.getMonth();
+                var d = dt.getDate();
+
+                if (pattern.toLowerCase() === '') {
+                    return `${y}-${m}-${d}`
+                } else {
+                    var hh = dt.getHours();
+                    var mm = dt.getMinutes();
+                    var ss = dt.getMinutes();
+
+                    return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+                }
+            });
             // 创建 Vue 实例，得到ViewModel
             var vm = new Vue({
                 el: '#app',
@@ -137,6 +160,40 @@
                     }
                 }
             });
+
+
+            // 如果定义一个私有的过滤器
+            var vm2 = new Vue({
+                el: '#app2',
+                data: {
+                    dt: new Date()
+                },
+                methods: {},
+                filters: {// 定义私有过滤器     两个条件 【过滤器名称 和 处理函数】
+                    // 过滤器调用的时候，采用的是就近原则，如果私有过滤器和全局过滤器名称一致了，这时候，优先调用私有过滤器.
+                    dateFormat: function (dateStr, pattern) {
+                        var dt = new Date(dataStr);
+
+                        // yyyy-mm-dd
+                        var y = dt.getFullYear();
+                        var m = dt.getMonth();
+                        var d = dt.getDate();
+
+                        if (pattern.toLowerCase() === '') {
+                            return `${y}-${m}-${d}`
+                        } else {
+                            var hh = dt.getHours();
+                            var mm = dt.getMinutes();
+                            var ss = dt.getMinutes();
+
+                            return `${y}-${m}-${d} ${hh}:${mm}:${ss}` + '~~~~~~~~~~'
+                        }
+                    }
+                }
+            });
+            // 过滤器定义语法
+            // Vue.filter('过滤器的名称', function() {
+            // return data + '123'; })
         </script>
     </body>
 </html>

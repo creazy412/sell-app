@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app">
+        {{ msg | msgFormat('小明') | test }}
+    </div>
+
+    <script>
+
+        // 定义一个 Vue 全局的过滤器
+        Vue.filter('msgFormat', function (msg, arg) {
+            // 字符串的 replace 方法，第一个参数，除了可写一个 字符串之外，还可以定义一个正则.
+            return msg.replace(/侦听器/g, arg);
+        })
+
+        Vue.filter('test', function (msg) {
+            // 字符串的 replace 方法，第一个参数，除了可写一个 字符串之外，还可以定义一个正则.
+            return msg + '+ ==============';
+        })
+
+        //创建Vue实例,得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: "虽然计算侦听器在大多数情况下更合适，但有时也需要一个自定义的侦听器。这就是为什么 Vue 通过 watch 选项提供了一个更通用的侦听器"
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>
