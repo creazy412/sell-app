@@ -79,15 +79,15 @@
 
                 // yyyy-mm-dd
                 var y = dt.getFullYear();
-                var m = dt.getMonth();
-                var d = dt.getDate();
+                var m = (dt.getMonth() + 1).toString().padStart(2, '0');
+                var d = dt.getDate().toString().padStart(2, '0');
 
                 if (pattern.toLowerCase() === '') {
                     return `${y}-${m}-${d}`
                 } else {
-                    var hh = dt.getHours();
-                    var mm = dt.getMinutes();
-                    var ss = dt.getMinutes();
+                    var hh = dt.getHours().toString().padStart(2, '0');
+                    var mm = dt.getMinutes().toString().padStart(2, '0');
+                    var ss = dt.getMinutes().toString().padStart(2, '0');
 
                     return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
                 }
@@ -176,15 +176,15 @@
 
                         // yyyy-mm-dd
                         var y = dt.getFullYear();
-                        var m = dt.getMonth();
-                        var d = dt.getDate();
+                        var m = (dt.getMonth() + 1).toString().padStart(2, '0');
+                        var d = dt.getDate().toString().padStart(2, '0');
 
                         if (pattern.toLowerCase() === '') {
                             return `${y}-${m}-${d}`
                         } else {
-                            var hh = dt.getHours();
-                            var mm = dt.getMinutes();
-                            var ss = dt.getMinutes();
+                            var hh = dt.getHours().toString().padStart(2, '0');
+                            var mm = dt.getMinutes().toString().padStart(2, '0');
+                            var ss = dt.getMinutes().toString().padStart(2, '0');
 
                             return `${y}-${m}-${d} ${hh}:${mm}:${ss}` + '~~~~~~~~~~'
                         }
