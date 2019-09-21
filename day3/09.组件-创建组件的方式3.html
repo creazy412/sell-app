@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->	
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app">
+        <mycom3></mycom3>
+    </div>
+
+    <!-- 在被控制的 #app 外贸，使用 template 元素，定义组件的 HTML 模板结构 -->
+    <template id="tmpl">
+        <div>
+            <h1>这是通过 template 元素，在外部定义的组件结构，这个方式有代码的智能提示和高亮</h1>
+            <h4>very good! nice!</h4>
+        </div>
+    </template>
+
+    <script>
+        Vue.component('mycom3', {
+            template: '#tmpl'
+        });
+     //创建Vue实例,得到 ViewModel
+     var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {}
+     });
+    </script>
+</body>
+
+</html>
