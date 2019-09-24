@@ -19,6 +19,20 @@
             text-decoration: underline;
             background-color: blueviolet;
         }
+
+
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(180px);
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.5s ease;
+        }
+
+        .enter
     </style>
 </head>
 
@@ -33,7 +47,9 @@
 
         <!-- vue-router 提供的元素，专门用来 当作占位符，路由规则匹配到的组件，将会展示到这里 -->
         <!-- 所以，我们可以认为 router-view 是一个占位符 -->
-        <router-view></router-view>
+        <transition model="out-in">
+            <router-view></router-view>
+        </transition>
     </div>
 
     <script>
