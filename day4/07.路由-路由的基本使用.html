@@ -13,8 +13,12 @@
 
 <body>
     <div id ="app">
-        <a href="#/login">登陆</a>
-        <a href="#/register">注册</a>
+        <!-- <a href="#/login">登陆</a>
+        <a href="#/register">注册</a> -->
+        
+        <!-- router-link 默认渲染成一个 a 标签 -->
+        <router-link to='/login' tag='span'>登陆</router-link>
+        <router-link to='/register'>注册</router-link>
 
         <!-- vue-router 提供的元素，专门用来 当作占位符，路由规则匹配到的组件，将会展示到这里 -->
         <!-- 所以，我们可以认为 router-view 是一个占位符 -->
